@@ -40,3 +40,10 @@ var getMeanVals = function(image){
 var means = modisNDVI
   .map(getMeanVals)
   .flatten()
+
+// Export to csv  
+Export.table.toDrive({
+    collection:means.select(['.*'],null,false),
+    description:"DATA_FULL_CLIMA",
+    fileFormat:"CSV"
+  })
