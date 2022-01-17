@@ -6,7 +6,7 @@ var table = ee.FeatureCollection("users/a20164808/SHAPE_DISTRITOS"),
 var distris = ee.FeatureCollection([table]).flatten();
 
 // Import clima image collection, clip for peru and select bands
-var modisNDVI = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
+var image_coll = ee.ImageCollection("IDAHO_EPSCOR/TERRACLIMATE")
  .map(clipToCol)
  .select(["tmmn","tmmx","pr"]);
   
@@ -19,7 +19,7 @@ var startDate = ee.Date('1990-01-01');
 var endDate = ee.Date('2020-12-01');
 
 // Filter by dates
-var modisNDVI = modisNDVI.filterDate(startDate,endDate)
+var image_coll = image_coll.filterDate(startDate,endDate)
 
 // Custom function
 var getMeanVals = function(image){
@@ -37,7 +37,7 @@ var getMeanVals = function(image){
 }
 
 // Apply custom function
-var means = modisNDVI
+var means = image_coll
   .map(getMeanVals)
   .flatten()
 
