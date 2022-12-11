@@ -4,6 +4,8 @@
 /*====================*/
 /*====================*/
 
+/* Author: Paolo Ponce */
+
 var proy_lin = ee.FeatureCollection('users/a20164808/2234988');
 var centro = proy_lin.geometry().centroid().coordinates();
 print(centro);
